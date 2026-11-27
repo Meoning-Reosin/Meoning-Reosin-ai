@@ -1,0 +1,18 @@
+# 키
+.env
+
+# 벡터 캐시
+cache/
+*.jsonl
+
+# 사진
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.heic
+
+# 기타
+.DS_Store
+__pycache__/
+.venv/
