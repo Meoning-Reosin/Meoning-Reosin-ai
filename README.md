@@ -18,7 +18,9 @@
 Meoning-Reosin-ai/
 ├── .env.example        # 환경 변수 이름 (값 없음)
 ├── requirements.txt
-└── README.md
+├── README.md
+└── recognition/
+    └── build_index.py  # 건물 인식 참조 벡터 만들기
 ```
 
 - `recognition/`, `recommend/`, `description/`, `congestion/`은 각 기능 브랜치에서 만듭니다.
@@ -45,10 +47,20 @@ conda activate wcc-ai
 
 `.env`는 커밋하지 않습니다. 새 변수가 생기면 `.env.example`에 이름만 추가합니다.
 
+### 건물 인식 참조 벡터 만들기
+
+참조 사진을 임베딩해 DB(`place_image_embeddings`)에 저장합니다. 사진 추가·모델 버전 변경 때만 실행합니다.
+
+```bash
+az login
+python recognition/build_index.py --dry-run   # 대상만 확인
+python recognition/build_index.py
+```
+
 ## 데이터 규칙
 
 - 사진과 데이터는 레포에 올리지 않고 Azure Blob Storage에 둡니다.
-- 정제된 사진은 `curated/{place_id}/` 경로에 장소별로 저장합니다.
+- 정제된 사진은 `curated` 컨테이너의 `{place_id}/` 경로에 장소별로 저장합니다.
 
 ## 건물 인식 Model Contract
 
